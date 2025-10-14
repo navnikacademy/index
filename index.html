@@ -18,13 +18,13 @@
     <h2>IIT-JEE Maths Demo Registration</h2>
     <form id="registrationForm">
       <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" placeholder="Full Name" required>
+      <input type="text" id="name" name="name" required>
 
       <label for="email">Email ID</label>
-      <input type="email" id="email" name="email" placeholder="Email ID" required>
+      <input type="email" id="email" name="email" required>
 
       <label for="whatsapp">WhatsApp Number</label>
-      <input type="text" id="whatsapp" name="whatsapp" placeholder="WhatsApp Number" required>
+      <input type="text" id="whatsapp" name="whatsapp" required>
 
       <label for="classLevel">Class Level</label>
       <select id="classLevel" name="classLevel" required>
@@ -68,7 +68,7 @@
       </select>
 
       <label for="school">School / College Name</label>
-      <input type="text" id="school" name="school" placeholder="School / College Name">
+      <input type="text" id="school" name="school">
 
       <label for="jeeAttempted">Have you attempted JEE before?</label>
       <select id="jeeAttempted" name="jeeAttempted">
@@ -78,10 +78,10 @@
       </select>
 
       <label for="weakTopics">Weak Topics (optional)</label>
-      <input type="text" id="weakTopics" name="weakTopics" placeholder="Weak Topics (optional)">
+      <input type="text" id="weakTopics" name="weakTopics">
 
       <label for="source">How did you hear about us?</label>
-      <input type="text" id="source" name="source" placeholder="How did you hear about us?">
+      <input type="text" id="source" name="source">
 
       <button type="submit">Register Now</button>
     </form>
@@ -90,31 +90,27 @@
 
   <script>
     const form = document.getElementById("registrationForm");
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbzke70xJGDtrMSY20e-Q89gs18OoNDFCO8gIzm_-xv1i4skagx1hpXwF-BPe47WYlBCHQ/exec"; // replace with your latest deployed URL
+
     form.addEventListener("submit", e => {
       e.preventDefault();
       const formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycbzke70xJGDtrMSY20e-Q89gs18OoNDFCO8gIzm_-xv1i4skagx1hpXwF-BPe47WYlBCHQ/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if(data.result === "success") {
-          document.getElementById("message").innerText = "✅ Registration successful! Check your email for details.";
-          form.reset();
-        } else {
+      fetch(webAppUrl, { method: "POST", body: formData })
+        .then(resp => resp.json())
+        .then(data => {
+          if (data.result === "success") {
+            document.getElementById("message").innerText = "✅ Registration successful! Check your email.";
+            form.reset();
+          } else {
+            document.getElementById("message").innerText = "❌ Error submitting form: " + (data.error || "Try again.");
+          }
+        })
+        .catch(err => {
           document.getElementById("message").innerText = "❌ Error submitting form. Try again.";
-        }
-      })
-      .catch(err => {
-        document.getElementById("message").innerText = "❌ Error submitting form. Try again.";
-        console.error("Fetch error:", err);
-      });
+          console.error("Fetch error:", err);
+        });
     });
   </script>
 </body>
 </html>
-
-
-
