@@ -76,7 +76,7 @@
       const params = new URLSearchParams();
       for (const pair of data) { params.append(pair[0], pair[1]); }
 
-      fetch("YOUR_WEB_APP_URL_HERE", { method: "POST", body: params })
+      fetch("https://script.google.com/macros/s/AKfycbyut4OEA3BaJNCsBbz6FeWh2qhQMCVDFvYbnZRQYQB2mDdqAjOgsM7_BVVE8I5inq_G2A/exec", { method: "POST", body: params })
         .then(response => response.json())
         .then(result => {
           if(result.result=="success"){
@@ -93,4 +93,5 @@
   </script>
 </body>
 </html>
+
 
