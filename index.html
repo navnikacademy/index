@@ -9,12 +9,13 @@
     input, select { width: 100%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #ccc; }
     button { width: 100%; padding: 10px; background: #2980b9; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
     button:hover { background: #3498db; }
+    #message { text-align: center; margin-top: 10px; font-weight: bold; }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>IIT-JEE Maths Demo Registration</h2>
-    <form id="registrationForm" action="https://script.google.com/macros/s/AKfycbyut4OEA3BaJNCsBbz6FeWh2qhQMCVDFvYbnZRQYQB2mDdqAjOgsM7_BVVE8I5inq_G2A/exec" method="POST">
+    <form id="registrationForm">
       <input type="text" name="name" placeholder="Full Name" required>
       <input type="email" name="email" placeholder="Email ID" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp Number" required>
@@ -65,35 +66,34 @@
       <input type="text" name="source" placeholder="How did you hear about us?">
       <button type="submit">Register Now</button>
     </form>
-    <p id="message" style="color: green; text-align:center; margin-top:10px;"></p>
+    <p id="message"></p>
   </div>
 
   <script>
-    const form = document.getElementById('registrationForm');
-    form.addEventListener('submit', function(e){
+    const form = document.getElementById("registrationForm");
+    form.addEventListener("submit", e => {
       e.preventDefault();
-      const data = new FormData(form);
-      const params = new URLSearchParams();
-      for (const pair of data) { params.append(pair[0], pair[1]); }
 
-      fetch("https://script.google.com/macros/s/AKfycbyut4OEA3BaJNCsBbz6FeWh2qhQMCVDFvYbnZRQYQB2mDdqAjOgsM7_BVVE8I5inq_G2A/exec", { method: "POST", body: params })
-        .then(response => response.json())
-        .then(result => {
-          if(result.result=="success"){
-            document.getElementById('message').innerText = "Registration successful! Check your email for details.";
-            form.reset();
-          } else {
-            document.getElementById('message').innerText = "Error submitting form. Try again.";
-          }
-        }).catch(err=>{
-          document.getElementById('message').innerText = "Error submitting form. Try again.";
-          console.error(err);
-        });
+      const formData = new FormData(form);
+
+      fetch("https://script.google.com/macros/s/AKfycbyut4OEA3BaJNCsBbz6FeWh2qhQMCVDFvYbnZRQYQB2mDdqAjOgsM7_BVVE8I5inq_G2A/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(data.result === "success") {
+          document.getElementById("message").innerText = "✅ Registration successful! Check your email for details.";
+          form.reset();
+        } else {
+          document.getElementById("message").innerText = "❌ Error submitting form. Try again.";
+        }
+      })
+      .catch(err => {
+        document.getElementById("message").innerText = "❌ Error submitting form. Try again.";
+        console.error("Fetch error:", err);
+      });
     });
   </script>
 </body>
 </html>
-
-
-
-
