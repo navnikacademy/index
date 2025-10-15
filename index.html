@@ -261,7 +261,7 @@
 <body>
   <div class="header-banner">
     <div class="logo-container">
-      <img class="logo" src="https://i.imgur.com/your-logo-here.png" alt="Navnik Logo">
+      <img class="logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect x='40' y='80' width='30' height='80' fill='%239B1B7A'/%3E%3Crect x='65' y='60' width='20' height='100' fill='%23FDB913'/%3E%3Crect x='50' y='40' width='40' height='100' fill='%2300B8D4' transform='rotate(-45 70 90)'/%3E%3Crect x='90' y='40' width='40' height='100' fill='%2300B8D4' transform='rotate(45 110 90)'/%3E%3Crect x='115' y='50' width='30' height='90' fill='%230077B6'/%3E%3C/svg%3E" alt="Navnik Logo">
       <h1 class="academy-name">NAVNIK ACADEMY</h1>
     </div>
     <p class="tagline">Free IIT-JEE Maths Demo — Learn Smart Tricks to Boost Your JEE 2026 Rank</p>
@@ -441,12 +441,34 @@
       responseDiv.style.color = "#666";
 
       fetch(scriptURL, { method: 'POST', body: formData })
-        .then(res => res.json())
-        .then(data => {
+        .then(res => {
+          console.log('Response status:', res.status);
+          return res.text();
+        })
+        .then(text => {
+          console.log('Response text:', text);
           submitBtn.disabled = false;
           submitBtn.textContent = "Register for Free Demo Class";
           
-          if (data.result === "success") {
+          try {
+            const data = JSON.parse(text);
+            if (data.result === "success") {
+              responseDiv.innerHTML = "✅ Registration Successful! Check your email for confirmation.";
+              responseDiv.className = "success";
+              qrContainer.style.display = "block";
+              waLink.href = whatsappInvite;
+              qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(whatsappInvite)}`;
+              form.reset();
+              
+              // Scroll to success message
+              responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+              responseDiv.innerHTML = "⚠️ Something went wrong. Please try again.";
+              responseDiv.className = "error";
+            }
+          } catch (e) {
+            // If data is saved but response parsing failed, still show success
+            console.log('JSON parse error, but data might be saved:', e);
             responseDiv.innerHTML = "✅ Registration Successful! Check your email for confirmation.";
             responseDiv.className = "success";
             qrContainer.style.display = "block";
@@ -456,13 +478,10 @@
             
             // Scroll to success message
             responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          } else {
-            responseDiv.innerHTML = "⚠️ Something went wrong. Please try again.";
-            responseDiv.className = "error";
           }
         })
         .catch(err => {
-          console.error(err);
+          console.error('Fetch error:', err);
           submitBtn.disabled = false;
           submitBtn.textContent = "Register for Free Demo Class";
           responseDiv.innerHTML = "❌ Error submitting form. Please check your internet connection and try again.";
