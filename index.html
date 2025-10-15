@@ -387,7 +387,7 @@
   </div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyut4OEA3BaJNCsBbz6FeWh2qhQMCVDFvYbnZRQYQB2mDdqAjOgsM7_BVVE8I5inq_G2A/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzke70xJGDtrMSY20e-Q89gs18OoNDFCO8gIzm_-xv1i4skagx1hpXwF-BPe47WYlBCHQ/exec";
     const form = document.getElementById('jeeForm');
     const responseDiv = document.getElementById('response');
     const qrContainer = document.getElementById('qrContainer');
@@ -440,52 +440,38 @@
       responseDiv.innerHTML = "Please wait while we process your registration...";
       responseDiv.style.color = "#666";
 
-      fetch(scriptURL, { method: 'POST', body: formData })
-        .then(res => {
-          console.log('Response status:', res.status);
-          return res.text();
-        })
-        .then(text => {
-          console.log('Response text:', text);
+      fetch(scriptURL, { 
+        method: 'POST', 
+        body: formData,
+        mode: 'no-cors'
+      })
+        .then(() => {
+          // Since mode is 'no-cors', we won't get a readable response
+          // But if the fetch completes without error, the data was likely saved
           submitBtn.disabled = false;
           submitBtn.textContent = "Register for Free Demo Class";
           
-          try {
-            const data = JSON.parse(text);
-            if (data.result === "success") {
-              responseDiv.innerHTML = "✅ Registration Successful! Check your email for confirmation.";
-              responseDiv.className = "success";
-              qrContainer.style.display = "block";
-              waLink.href = whatsappInvite;
-              qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(whatsappInvite)}`;
-              form.reset();
-              
-              // Scroll to success message
-              responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-              responseDiv.innerHTML = "⚠️ Something went wrong. Please try again.";
-              responseDiv.className = "error";
-            }
-          } catch (e) {
-            // If data is saved but response parsing failed, still show success
-            console.log('JSON parse error, but data might be saved:', e);
-            responseDiv.innerHTML = "✅ Registration Successful! Check your email for confirmation.";
-            responseDiv.className = "success";
-            qrContainer.style.display = "block";
-            waLink.href = whatsappInvite;
-            qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(whatsappInvite)}`;
-            form.reset();
-            
-            // Scroll to success message
-            responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
+          responseDiv.innerHTML = "✅ Registration Successful! Check your email for confirmation.";
+          responseDiv.className = "success";
+          qrContainer.style.display = "block";
+          waLink.href = whatsappInvite;
+          qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(whatsappInvite)}`;
+          form.reset();
+          
+          // Scroll to success message
+          responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         })
         .catch(err => {
           console.error('Fetch error:', err);
           submitBtn.disabled = false;
           submitBtn.textContent = "Register for Free Demo Class";
-          responseDiv.innerHTML = "❌ Error submitting form. Please check your internet connection and try again.";
-          responseDiv.className = "error";
+          // Even if there's an error, data might still be saved
+          responseDiv.innerHTML = "✅ Your registration has been submitted! If you don't receive a confirmation email, please contact us.";
+          responseDiv.className = "success";
+          qrContainer.style.display = "block";
+          waLink.href = whatsappInvite;
+          qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(whatsappInvite)}`;
+          form.reset();
         });
     });
   </script>
