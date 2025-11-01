@@ -6,7 +6,7 @@
   <title>Navnik Academy - IIT-JEE & CET Maths Demo Registration</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playwrite+DE+Grund:wght@400&family=Playwrite+US+Modern:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700;900&family=Playwrite+US+Modern:wght@400&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,20 +16,21 @@
     
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #0a1828 0%, #1e3a5f 50%, #2c5f8d 100%);
       min-height: 100vh;
       padding: 20px;
     }
     
     .header-banner {
-      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      background: linear-gradient(135deg, #001129 0%, #0d2847 100%);
       padding: 30px 20px;
       text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
       margin-bottom: 30px;
       border-radius: 20px;
       max-width: 900px;
       margin: 0 auto 30px;
+      border: 2px solid rgba(100, 200, 255, 0.3);
     }
     
     .logo-container {
@@ -46,24 +47,25 @@
       background: white;
       border-radius: 15px;
       padding: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 15px rgba(100, 200, 255, 0.3);
     }
     
     .academy-name {
-      font-family: 'Playwrite DE Grund', cursive;
-      font-size: 48px;
-      font-weight: 400;
-      background: linear-gradient(135deg, #00d4ff 0%, #ffd700 100%);
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #64c8ff 0%, #a8e0ff 50%, #64c8ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      letter-spacing: 3px;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+      letter-spacing: 4px;
+      text-transform: uppercase;
     }
     
     .tagline {
       font-family: 'Playwrite US Modern', cursive;
-      color: #ffffff;
+      color: #b3d9ff;
       font-size: 20px;
       font-weight: 400;
       margin-top: 10px;
@@ -77,12 +79,13 @@
       background: #ffffff;
       border-radius: 20px;
       padding: 40px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 3px solid #1e3a5f;
     }
     
     h2 {
       text-align: center;
-      color: #2b2d42;
+      color: #0a1828;
       margin-bottom: 10px;
       font-size: 28px;
       font-weight: 700;
@@ -90,9 +93,10 @@
     
     .subtitle {
       text-align: center;
-      color: #666;
+      color: #1e3a5f;
       margin-bottom: 30px;
       font-size: 14px;
+      font-weight: 600;
     }
     
     .form-group {
@@ -102,13 +106,13 @@
     label {
       display: block;
       margin-bottom: 8px;
-      color: #2b2d42;
+      color: #0a1828;
       font-weight: 600;
       font-size: 14px;
     }
     
     .required {
-      color: #e63946;
+      color: #d32f2f;
     }
     
     input, select, textarea {
@@ -123,16 +127,16 @@
     
     input:focus, select:focus, textarea:focus {
       outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      border-color: #1e3a5f;
+      box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
     }
     
     input.error, select.error {
-      border-color: #e63946;
+      border-color: #d32f2f;
     }
     
     .error-message {
-      color: #e63946;
+      color: #d32f2f;
       font-size: 12px;
       margin-top: 5px;
       display: none;
@@ -150,7 +154,7 @@
     button {
       width: 100%;
       padding: 15px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #0a1828 0%, #1e3a5f 50%, #2c5f8d 100%);
       color: white;
       font-weight: 700;
       font-size: 16px;
@@ -159,11 +163,13 @@
       cursor: pointer;
       transition: all 0.3s ease;
       margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(30, 58, 95, 0.4);
     }
     
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 10px 25px rgba(30, 58, 95, 0.6);
+      background: linear-gradient(135deg, #0d2847 0%, #2c5f8d 50%, #3a7bb8 100%);
     }
     
     button:active {
@@ -202,14 +208,15 @@
       text-align: center;
       margin-top: 20px;
       padding: 20px;
-      background: #f8f9fa;
+      background: #e3f2fd;
       border-radius: 10px;
       display: none;
+      border: 2px solid #1e3a5f;
     }
     
     .qr-container p {
       font-weight: 600;
-      color: #2b2d42;
+      color: #0a1828;
       margin-bottom: 10px;
     }
     
@@ -235,12 +242,13 @@
       width: 200px;
       height: 200px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border: 3px solid #1e3a5f;
     }
     
     @media (max-width: 768px) {
       .academy-name {
-        font-size: 36px;
+        font-size: 40px;
       }
       
       .logo {
@@ -269,7 +277,7 @@
 
   <div class="container">
     <h2>🎯IIT-JEE & CET Maths Demo Class</h2>
-    <p class="subtitle">Jan 2026 Attempt | Limited Seats Available</p>
+    <p class="subtitle">2026 Attempt | Limited Seats Available</p>
     
     <form id="jeeForm">
       <div class="form-group">
@@ -349,7 +357,7 @@
       </div>
 
       <div class="form-group">
-        <label>Have you attempted JEE before? <span class="required">*</span></label>
+        <label>Have you attempted JEE/CET before? <span class="required">*</span></label>
         <select name="jeeAttempted" id="jeeAttempted" required>
           <option value="" disabled selected>Select Option</option>
           <option value="No">No</option>
@@ -396,15 +404,12 @@
     const submitBtn = document.getElementById('submitBtn');
     const whatsappInvite = "https://chat.whatsapp.com/GIMzGXFIz4c9KHlICIZg9W?mode=wwc";
 
-    // WhatsApp number validation - only accept numbers
     const whatsappInput = document.getElementById('whatsapp');
     const whatsappError = document.getElementById('whatsappError');
     
     whatsappInput.addEventListener('input', function(e) {
-      // Remove any non-numeric characters
       this.value = this.value.replace(/[^0-9]/g, '');
       
-      // Validate length
       if (this.value.length > 0 && this.value.length !== 10) {
         this.classList.add('error');
         whatsappError.classList.add('show');
@@ -417,7 +422,6 @@
     form.addEventListener('submit', e => {
       e.preventDefault();
       
-      // Clear previous messages
       responseDiv.innerHTML = "";
       responseDiv.className = "";
       qrContainer.style.display = "none";
@@ -425,7 +429,6 @@
       const formData = new FormData(form);
       const whatsapp = formData.get("whatsapp");
 
-      // Validate 10-digit number
       if (!/^\d{10}$/.test(whatsapp)) {
         responseDiv.innerHTML = "⚠️ Please enter a valid 10-digit WhatsApp number (numbers only).";
         responseDiv.className = "error";
@@ -434,7 +437,6 @@
         return;
       }
 
-      // Show loading state
       submitBtn.disabled = true;
       submitBtn.textContent = "⏳ Submitting...";
       responseDiv.innerHTML = "Please wait while we process your registration...";
@@ -446,8 +448,6 @@
         mode: 'no-cors'
       })
         .then(() => {
-          // Since mode is 'no-cors', we won't get a readable response
-          // But if the fetch completes without error, the data was likely saved
           submitBtn.disabled = false;
           submitBtn.textContent = "Register for Free Demo Class";
           
@@ -458,14 +458,12 @@
           qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(whatsappInvite)}`;
           form.reset();
           
-          // Scroll to success message
           responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         })
         .catch(err => {
           console.error('Fetch error:', err);
           submitBtn.disabled = false;
           submitBtn.textContent = "Register for Free Demo Class";
-          // Even if there's an error, data might still be saved
           responseDiv.innerHTML = "✅ Your registration has been submitted! If you don't receive a confirmation email, please contact us.";
           responseDiv.className = "success";
           qrContainer.style.display = "block";
@@ -477,6 +475,3 @@
   </script>
 </body>
 </html>
-
-
-
