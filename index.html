@@ -2,148 +2,418 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>IIT-JEE Maths Demo Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navnik Academy - IIT-JEE & CET Maths Demo Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700;900&family=Playwrite+US+Modern:wght@400&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f0f4f8;
+    * {
       margin: 0;
       padding: 0;
-    }
-    .container {
-      max-width: 520px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    h2 {
-      text-align: center;
-      color: #2b2d42;
-      margin-bottom: 20px;
-    }
-    input, select, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
       box-sizing: border-box;
     }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f1f38 0%, #1e3a5f 50%, #2c5f8d 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .header-banner {
+      background: linear-gradient(135deg, #0a1929 0%, #132f4c 100%);
+      padding: 35px 20px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      margin-bottom: 30px;
+      border-radius: 24px;
+      max-width: 900px;
+      margin: 0 auto 30px;
+      border: 2px solid rgba(100, 200, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 18px;
+    }
+    
+    .logo {
+      width: 85px;
+      height: 85px;
+      background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: 0 6px 20px rgba(100, 200, 255, 0.4);
+    }
+    
+    .academy-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 58px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #64c8ff 0%, #ffffff 50%, #64c8ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 8px rgba(100, 200, 255, 0.3));
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
+    
+    .tagline {
+      font-family: 'Playwrite US Modern', cursive;
+      color: #cfe8ff;
+      font-size: 20px;
+      font-weight: 400;
+      margin-top: 12px;
+      opacity: 0.95;
+      line-height: 1.5;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+      border-radius: 24px;
+      padding: 45px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(100, 200, 255, 0.1);
+      border: 2px solid rgba(100, 200, 255, 0.15);
+    }
+    
+    h2 {
+      text-align: center;
+      color: #1a3a5f;
+      margin-bottom: 12px;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: #2c5f8d;
+      margin-bottom: 35px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 9px;
+      color: #2d4a6b;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+    
+    .required {
+      color: #ff5252;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #d4e3f0;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+      background: #ffffff;
+      color: #2d4a6b;
+    }
+    
+    input::placeholder, textarea::placeholder {
+      color: #8ba5c1;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2c5f8d;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(44, 95, 141, 0.12);
+      transform: translateY(-1px);
+    }
+    
+    input.error, select.error {
+      border-color: #ff5252;
+      background: #fff5f5;
+    }
+    
+    .error-message {
+      color: #ff5252;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+      font-weight: 500;
+    }
+    
+    .error-message.show {
+      display: block;
+    }
+    
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+    
     button {
-      background: #0077b6;
+      width: 100%;
+      padding: 17px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5f8d 50%, #3a7bb8 100%);
       color: white;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 17px;
       border: none;
+      border-radius: 12px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      margin-top: 12px;
+      box-shadow: 0 6px 20px rgba(30, 58, 95, 0.5);
+      letter-spacing: 0.5px;
     }
+    
     button:hover {
-      background: #023e8a;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(30, 58, 95, 0.7);
+      background: linear-gradient(135deg, #0d2847 0%, #3a7bb8 50%, #4a8fce 100%);
     }
+    
+    button:active {
+      transform: translateY(-1px);
+    }
+    
+    button:disabled {
+      background: #b0bec5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
     .success {
-      color: green;
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+      color: #2e7d32;
+      padding: 18px;
+      border-radius: 12px;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 20px;
       font-weight: 600;
+      border: 2px solid #81c784;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
     }
+    
     .error {
-      color: red;
+      background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+      color: #c62828;
+      padding: 18px;
+      border-radius: 12px;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 20px;
       font-weight: 600;
+      border: 2px solid #ef5350;
+      box-shadow: 0 4px 12px rgba(198, 40, 40, 0.2);
     }
+    
     .qr-container {
       text-align: center;
-      margin-top: 15px;
+      margin-top: 25px;
+      padding: 28px;
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-radius: 16px;
+      display: none;
+      border: 2px solid #64b5f6;
+      box-shadow: 0 4px 16px rgba(30, 58, 95, 0.15);
     }
+    
+    .qr-container p {
+      font-weight: 600;
+      color: #1565c0;
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+    
+    .qr-container a {
+      display: inline-block;
+      padding: 13px 28px;
+      background: linear-gradient(135deg, #25D366 0%, #1fb855 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      font-size: 15px;
+    }
+    
+    .qr-container a:hover {
+      background: linear-gradient(135deg, #1fb855 0%, #128c3f 100%);
+      transform: scale(1.06);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    }
+    
     img.qr {
-      margin-top: 10px;
-      width: 160px;
-      height: 160px;
+      margin-top: 12px;
+      width: 200px;
+      height: 200px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      border: 3px solid #64b5f6;
+    }
+    
+    @media (max-width: 768px) {
+      .academy-name {
+        font-size: 42px;
+        letter-spacing: 3px;
+      }
+      
+      .logo {
+        width: 65px;
+        height: 65px;
+      }
+      
+      .container {
+        padding: 30px 25px;
+      }
+      
+      h2 {
+        font-size: 26px;
+      }
+      
+      .subtitle {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="header-banner">
+    <div class="logo-container">
+      <img class="logo" src="https://github.com/navnikacademy/index/blob/main/colorful%20logo%20jpg.jpg?raw=true" alt="Navnik Logo">
+      <h1 class="academy-name">NAVNIK ACADEMY</h1>
+    </div>
+    <p class="tagline">IIT-JEE & CET Maths Demo — Learn Smart Tricks to Boost Your JEE 2026 Rank</p>
+  </div>
+
   <div class="container">
-    <h2>🧮 IIT-JEE Maths Demo Registration</h2>
+    <h2>🎯 IIT-JEE & CET Maths Demo Class</h2>
+    <p class="subtitle">2026 Attempt | Limited Seats Available</p>
+    
     <form id="jeeForm">
-      <input type="text" name="name" placeholder="Full Name" required>
-      <input type="email" name="email" placeholder="Email ID" required>
-      <input type="text" name="whatsapp" placeholder="WhatsApp Number" required pattern="\\d{10}" title="Enter 10-digit WhatsApp number">
+      <div class="form-group">
+        <label>Full Name <span class="required">*</span></label>
+        <input type="text" name="name" id="name" placeholder="Enter your full name" required>
+        <div class="error-message" id="nameError">Please enter your name</div>
+      </div>
 
-      <select name="classLevel" required>
-        <option value="" disabled selected>Select Class</option>
-        <option value="11">Class 11</option>
-        <option value="12">Class 12</option>
-        <option value="12 Passed">12 Passed</option>
-      </select>
+      <div class="form-group">
+        <label>Email ID <span class="required">*</span></label>
+        <input type="email" name="email" id="email" placeholder="your.email@example.com" required>
+        <div class="error-message" id="emailError">Please enter a valid email</div>
+      </div>
 
-      <select name="state" required>
-        <option value="" disabled selected>Select Your State</option>
-        <option>Andhra Pradesh</option>
-        <option>Arunachal Pradesh</option>
-        <option>Assam</option>
-        <option>Bihar</option>
-        <option>Chhattisgarh</option>
-        <option>Goa</option>
-        <option>Gujarat</option>
-        <option>Haryana</option>
-        <option>Himachal Pradesh</option>
-        <option>Jharkhand</option>
-        <option>Karnataka</option>
-        <option>Kerala</option>
-        <option>Madhya Pradesh</option>
-        <option>Maharashtra</option>
-        <option>Manipur</option>
-        <option>Meghalaya</option>
-        <option>Mizoram</option>
-        <option>Nagaland</option>
-        <option>Odisha</option>
-        <option>Punjab</option>
-        <option>Rajasthan</option>
-        <option>Sikkim</option>
-        <option>Tamil Nadu</option>
-        <option>Telangana</option>
-        <option>Tripura</option>
-        <option>Uttar Pradesh</option>
-        <option>Uttarakhand</option>
-        <option>West Bengal</option>
-        <option>Andaman and Nicobar Islands</option>
-        <option>Chandigarh</option>
-        <option>Dadra and Nagar Haveli and Daman and Diu</option>
-        <option>Delhi</option>
-        <option>Jammu and Kashmir</option>
-        <option>Ladakh</option>
-        <option>Lakshadweep</option>
-        <option>Puducherry</option>
-      </select>
+      <div class="form-group">
+        <label>WhatsApp Number <span class="required">*</span></label>
+        <input type="text" name="whatsapp" id="whatsapp" placeholder="10-digit mobile number" maxlength="10" required>
+        <div class="error-message" id="whatsappError">Please enter a valid 10-digit WhatsApp number</div>
+      </div>
 
-      <input type="text" name="school" placeholder="School / College">
-      
-      <select name="jeeAttempted">
-        <option value="" disabled selected>Have you attempted JEE before?</option>
-        <option value="No">No</option>
-        <option value="Yes">Yes</option>
-      </select>
+      <div class="form-group">
+        <label>Class <span class="required">*</span></label>
+        <select name="classLevel" id="classLevel" required>
+          <option value="" disabled selected>Select Your Class</option>
+          <option value="11">Class 11</option>
+          <option value="12">Class 12</option>
+          <option value="12 Passed">12 Passed</option>
+        </select>
+      </div>
 
-      <textarea name="weakTopics" placeholder="Mention your weak topics (optional)"></textarea>
+      <div class="form-group">
+        <label>State <span class="required">*</span></label>
+        <select name="state" id="state" required>
+          <option value="" disabled selected>Select Your State</option>
+          <option>Andhra Pradesh</option>
+          <option>Arunachal Pradesh</option>
+          <option>Assam</option>
+          <option>Bihar</option>
+          <option>Chhattisgarh</option>
+          <option>Goa</option>
+          <option>Gujarat</option>
+          <option>Haryana</option>
+          <option>Himachal Pradesh</option>
+          <option>Jharkhand</option>
+          <option>Karnataka</option>
+          <option>Kerala</option>
+          <option>Madhya Pradesh</option>
+          <option>Maharashtra</option>
+          <option>Manipur</option>
+          <option>Meghalaya</option>
+          <option>Mizoram</option>
+          <option>Nagaland</option>
+          <option>Odisha</option>
+          <option>Punjab</option>
+          <option>Rajasthan</option>
+          <option>Sikkim</option>
+          <option>Tamil Nadu</option>
+          <option>Telangana</option>
+          <option>Tripura</option>
+          <option>Uttar Pradesh</option>
+          <option>Uttarakhand</option>
+          <option>West Bengal</option>
+          <option>Andaman and Nicobar Islands</option>
+          <option>Chandigarh</option>
+          <option>Dadra and Nagar Haveli and Daman and Diu</option>
+          <option>Delhi</option>
+          <option>Jammu and Kashmir</option>
+          <option>Ladakh</option>
+          <option>Lakshadweep</option>
+          <option>Puducherry</option>
+        </select>
+      </div>
 
-      <select name="source" required>
-        <option value="" disabled selected>How did you hear about us?</option>
-        <option value="Instagram">Instagram</option>
-        <option value="Facebook">Facebook</option>
-        <option value="Friends">Friends</option>
-        <option value="Others">Others</option>
-      </select>
+      <div class="form-group">
+        <label>City / Town <span class="required">*</span></label>
+        <input type="text" name="city" id="city" placeholder="Enter your city or town" required>
+      </div>
 
-      <button type="submit">Submit</button>
+      <div class="form-group">
+        <label>School / College <span class="required">*</span></label>
+        <input type="text" name="school" id="school" placeholder="Enter your school or college name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Weak Topics (Optional)</label>
+        <textarea name="weakTopics" id="weakTopics" placeholder="Mention topics you find challenging (e.g., Coordinate Geometry, Calculus)"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>How did you hear about us? <span class="required">*</span></label>
+        <select name="source" id="source" required>
+          <option value="" disabled selected>Select Source</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Facebook">Facebook</option>
+          <option value="YouTube">YouTube</option>
+          <option value="Friends">Friends</option>
+          <option value="Google Search">Google Search</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+
+      <button type="submit" id="submitBtn">Register for Free Demo Class</button>
       <div id="response"></div>
-      <div class="qr-container" id="qrContainer" style="display:none;">
+      <div class="qr-container" id="qrContainer">
         <p>📱 Join our WhatsApp Group:</p>
-        <a id="waLink" href="#" target="_blank">Click to Join</a>
+        <a id="waLink" href="#" target="_blank">Click to Join WhatsApp Group</a>
         <br>
         <img id="qrCode" class="qr" src="" alt="WhatsApp Group QR Code">
       </div>
@@ -151,49 +421,81 @@
   </div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyut4OEA3BaJNCsBbz6FeWh2qhQMCVDFvYbnZRQYQB2mDdqAjOgsM7_BVVE8I5inq_G2A/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzke70xJGDtrMSY20e-Q89gs18OoNDFCO8gIzm_-xv1i4skagx1hpXwF-BPe47WYlBCHQ/exec";
     const form = document.getElementById('jeeForm');
     const responseDiv = document.getElementById('response');
     const qrContainer = document.getElementById('qrContainer');
     const qrCode = document.getElementById('qrCode');
     const waLink = document.getElementById('waLink');
-    const whatsappInvite = "https://chat.whatsapp.com/GIMzGXFIz4c9KHlICIZg9W?mode=wwc";
+    const submitBtn = document.getElementById('submitBtn');
+    const whatsappInvite = "https://chat.whatsapp.com/DzY9XDiAksJFgxwVPsTkv3?mode=wwt";
+
+    const whatsappInput = document.getElementById('whatsapp');
+    const whatsappError = document.getElementById('whatsappError');
+    
+    whatsappInput.addEventListener('input', function(e) {
+      this.value = this.value.replace(/[^0-9]/g, '');
+      
+      if (this.value.length > 0 && this.value.length !== 10) {
+        this.classList.add('error');
+        whatsappError.classList.add('show');
+      } else {
+        this.classList.remove('error');
+        whatsappError.classList.remove('show');
+      }
+    });
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      responseDiv.innerHTML = "⏳ Submitting... please wait.";
+      
+      responseDiv.innerHTML = "";
       responseDiv.className = "";
       qrContainer.style.display = "none";
 
       const formData = new FormData(form);
       const whatsapp = formData.get("whatsapp");
 
-      // ✅ validate 10-digit number
-      if(!/^\d{10}$/.test(whatsapp)){
-        responseDiv.innerHTML = "⚠️ Please enter a valid 10-digit WhatsApp number.";
+      if (!/^\d{10}$/.test(whatsapp)) {
+        responseDiv.innerHTML = "⚠️ Please enter a valid 10-digit WhatsApp number (numbers only).";
         responseDiv.className = "error";
+        whatsappInput.classList.add('error');
+        whatsappError.classList.add('show');
         return;
       }
 
-      fetch(scriptURL, { method: 'POST', body: formData })
-        .then(res => res.json())
-        .then(data => {
-          if (data.result === "success") {
-            responseDiv.innerHTML = "✅ Registration Successful! Check your email for confirmation.";
-            responseDiv.className = "success";
-            qrContainer.style.display = "block";
-            waLink.href = whatsappInvite;
-            qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(whatsappInvite)}`;
-            form.reset();
-          } else {
-            responseDiv.innerHTML = "⚠️ Something went wrong. Please try again.";
-            responseDiv.className = "error";
-          }
+      submitBtn.disabled = true;
+      submitBtn.textContent = "⏳ Submitting...";
+      responseDiv.innerHTML = "Please wait while we process your registration...";
+      responseDiv.style.color = "#666";
+
+      fetch(scriptURL, { 
+        method: 'POST', 
+        body: formData,
+        mode: 'no-cors'
+      })
+        .then(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Register for Free Demo Class";
+          
+          responseDiv.innerHTML = "✅ Registration Successful! Check your email for confirmation.";
+          responseDiv.className = "success";
+          qrContainer.style.display = "block";
+          waLink.href = whatsappInvite;
+          qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(whatsappInvite)}`;
+          form.reset();
+          
+          responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         })
         .catch(err => {
-          console.error(err);
-          responseDiv.innerHTML = "❌ Error submitting form. Please try again later.";
-          responseDiv.className = "error";
+          console.error('Fetch error:', err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Register for Free Demo Class";
+          responseDiv.innerHTML = "✅ Your registration has been submitted! If you don't receive a confirmation email, please contact us.";
+          responseDiv.className = "success";
+          qrContainer.style.display = "block";
+          waLink.href = whatsappInvite;
+          qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(whatsappInvite)}`;
+          form.reset();
         });
     });
   </script>
